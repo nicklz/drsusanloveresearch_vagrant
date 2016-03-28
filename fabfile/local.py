@@ -23,7 +23,7 @@ def setup():
         # Install local database from staging server
         local("gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3");
         local("curl -sSL https://get.rvm.io | bash -s stable");
-        local("echo '\n\n\n*** USE COMMAND: source /home/vagrant/.rvm/scripts/rvm && rvm install ruby-1.9.3-p551 && rvm use ruby-1.9.3-p551 ***\n\n\n'");
+        local("echo '\n\n\n*** USE COMMAND: *** \n\n\n source /home/vagrant/.rvm/scripts/rvm && rvm install ruby-1.9.3-p551 && rvm use ruby-1.9.3-p551 \n\n\n'");
 @task
 def setup2():
     with settings(warn_only=True):

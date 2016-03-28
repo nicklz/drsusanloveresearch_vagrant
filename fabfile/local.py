@@ -21,11 +21,15 @@ from fabric.api import settings
 def setup():
     with settings(warn_only=True):
         # Install local database from staging server
-        local("yes | sudo apt-get install python-software-properties");
-        local("yes | sudo apt-add-repository ppa:brightbox/ruby-ng");
-        local("yes | sudo apt-get update");
-        local("yes | sudo apt-get install ruby1.9.3");
-        local("sudo update-alternatives --set ruby /usr/bin/ruby1.9.3");
+        local("gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3");
+        local("curl -sSL https://get.rvm.io | bash -s stable");
+        local("echo '*** USE COMMAND: source /home/vagrant/.rvm/scripts/rvm AND THEN fab local.setup2 ***'");
+@task
+def setup2():
+    with settings(warn_only=True):
+
+        local("rvm install ruby-1.9.3-p551");
+        local("/bin/bash -l -c 'rvm use ruby-1.9.3-p551'");
 
         local("cd ~/www/sites/all/themes/dslrf && bundle install")
         local('echo "drop database drsusanloveresearch;" | mysql -uroot')

@@ -30,6 +30,8 @@ def setup2():
         local("cd ~/www/sites/all/themes/dslrf && bundle install")
         local('echo "drop database drsusanloveresearch;" | mysql -uroot')
         local('echo "create database drsusanloveresearch;" | mysql -uroot')
+        local('echo "drop database lime;" | mysql -uroot')
+        local('echo "create database lime;" | mysql -uroot')
         local('mysql -u root -p drsusanloveresearch --password="" < /home/vagrant/www/dump.sql')
         local("cd ~/www/sites/local.drsusanloveresearch.org && drush cc all")
 

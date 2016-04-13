@@ -210,22 +210,35 @@
  *   );
  * @endcode
  */
-$databases = array (
-  'default' => 
-  array (
-    'default' => 
-    array (
-      'database' => 'drsusanloveresearch',
-      'username' => 'root',
-      'password' => '',
-      'host' => 'localhost',
-      'port' => '',
-      'driver' => 'mysql',
-      'prefix' => '',
-    ),
-  ),
-);
 
+$databases = array (
+  'default' =>
+    array (
+      'default' =>
+        array (
+          'database' => 'drsusanloveresearch',
+          'username' => 'root',
+          'password' => '',
+          'host' => 'localhost',
+          'port' => '',
+          'driver' => 'mysql',
+          'prefix' => '',
+        ),
+    ),
+  'ls' =>
+    array (
+      'default' =>
+        array (
+          'database' => 'lime',
+          'username' => 'root',
+          'password' => '',
+          'host' => 'localhost',
+          'port' => '',
+          'driver' => 'mysql',
+          'prefix' => 'lime_',
+        ),
+    ),
+);
 /**
  * Access control for update.php script.
  *

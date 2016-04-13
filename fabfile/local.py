@@ -33,6 +33,8 @@ def setup2():
         local('echo "drop database lime;" | mysql -uroot')
         local('echo "create database lime;" | mysql -uroot')
         local('mysql -u root -p drsusanloveresearch --password="" < /home/vagrant/www/dump.sql')
+        local("cd ~/www/sites/local.drsusanloveresearch.org && drush en dslrf_updates -y")
+        local("cd ~/www/sites/local.drsusanloveresearch.org && drush updb -y")
         local("cd ~/www/sites/local.drsusanloveresearch.org && drush cc all")
 
 

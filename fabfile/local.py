@@ -34,8 +34,12 @@ def setup2():
         local('echo "create database lime;" | mysql -uroot')
         local('mysql -u root -p drsusanloveresearch --password="" < /home/vagrant/www/dump.sql')
         local("cd ~/www/sites/local.drsusanloveresearch.org && drush en dslrf_updates -y")
+        local('echo \'UPDATE system SET schema_version = 7000 WHERE name = "dslrf_updates";\' | mysql -uroot -p drsusanloveresearch')
         local("cd ~/www/sites/local.drsusanloveresearch.org && drush updb -y")
         local("cd ~/www/sites/local.drsusanloveresearch.org && drush cc all")
+
+
+
 
 
         #local("cd ~/www/sites/local.drsusanloveresearch.org && drush sql-sync @drsusanloveresearchllc.dev @drsusanloveresearchllc.local --create-db -y --source-dump=/tmp/tmp.sql --target-dump=/tmp/tmp.sql --no-cache")
@@ -65,5 +69,28 @@ def sync():
     with settings(warn_only=True):
         # Sync local database from staging server
         local('mysql -u root -p drsusanloveresearch --password="" < /home/vagrant/www/dump.sql')
-        #local("cd ~/www/sites/local.drsusanloveresearch.org && drush sql-sync @drsusanloveresearchllc.dev @drsusanloveresearchllc.local --create-db -y --source-dump=/tmp/tmp.sql --target-dump=/tmp/tmp.sql --no-cache")
+        local('mysql -u root -p lime --password="" < /home/vagrant/www/lime.sql')
+
         local("cd ~/www/sites/local.drsusanloveresearch.org && drush cc all")
+
+@task
+def rebuild():
+    with settings(warn_only=True):
+        # Sync local database from staging server
+        local('echo "drop database drsusanloveresearch;" | mysql -uroot')
+        local('echo "create database drsusanloveresearch;" | mysql -uroot')
+        local('echo "drop database lime;" | mysql -uroot')
+        local('echo "create database lime;" | mysql -uroot')
+
+        local('mysql -u root -p drsusanloveresearch --password="" < /home/vagrant/www/dump.sql')
+        local('mysql -u root -p lime --password="" < /home/vagrant/www/lime.sql')
+
+        local("cd ~/www/sites/local.drsusanloveresearch.org && drush cc all")
+        local("cd ~/www/sites/local.drsusanloveresearch.org && drush en dslrf_updates -y")
+        local('echo \'UPDATE system SET schema_version = 7000 WHERE name = "dslrf_updates";\' | mysql -uroot -p drsusanloveresearch')
+        local("cd ~/www/sites/local.drsusanloveresearch.org && drush updb -y")
+        local("cd ~/www/sites/local.drsusanloveresearch.org && drush cc all")
+
+
+
+

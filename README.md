@@ -6,6 +6,7 @@
 
 ##Steps
 * git clone git@github.com:nicklz/drsusanloveresearch_vagrant.git vagrant
+* clone the other repo and call it 'docroot' - also grab a copy of the db => docroot/dump.sql and lime db => docroot/lime.sql
 * cd vagrant
 * vagrant plugin install vagrant-hostsupdater
 * vagrant up

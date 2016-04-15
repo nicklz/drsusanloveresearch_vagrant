@@ -1,7 +1,4 @@
 class base-lamp::drupal {
-    exec{'rm -rf /home/vagrant/www/sites/local.drsusanloveresearch.org':
-
-    }
     file{'local.drsusanloveresearch.org':
             path => '/home/vagrant/www/sites/local.drsusanloveresearch.org',
             ensure => present,

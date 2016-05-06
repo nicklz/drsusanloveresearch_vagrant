@@ -14,7 +14,10 @@ sudo service apache2 restart
 
 gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
 curl -sSL https://get.rvm.io | bash -s stable
-source /home/vagrant/.rvm/scripts/rvm && rvm install ruby-1.9.3-p551 && rvm use ruby-1.9.3-p551
+source /home/vagrant/.rvm/scripts/rvm 
+rvm install 2.1.1-named
+rvm use 2.1.1-named
+sudo gem install bundler
 
 cd ~/www/sites/all/themes/dslrf && bundle install
 echo "drop database drsusanloveresearch;" | mysql -uroot
